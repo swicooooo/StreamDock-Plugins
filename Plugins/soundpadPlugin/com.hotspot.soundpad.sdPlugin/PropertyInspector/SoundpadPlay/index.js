@@ -98,10 +98,29 @@ function SoundSelectChange(value) {
         $settings.SoundIndexInput = index;
         console.log('Auto-populated SoundIndex:', index);
     }
+
+    if ($dom.ShowTitleCheckID.checked) {
+        ShowTitleCheckChange(true);
+    }
 }
 function SoundIndexInputChange(value) {
     console.log('SoundIndexInputChange:', value);
     $settings.SoundIndexInput = value;
+
+    const sound = $allSounds.find(s => String(s.index) === String(value));
+    if (sound) {
+        if ($dom.CategorySelectID.value !== sound.category) {
+            $dom.CategorySelectID.value = sound.category;
+            $settings.CategorySelect = sound.category;
+            populateSoundsByCategory(sound.category);
+        }
+        $dom.SoundSelectID.value = sound.name;
+        $settings.SoundSelect = sound.name;
+
+        if ($dom.ShowTitleCheckID.checked) {
+            ShowTitleCheckChange(true);
+        }
+    }
 }
 function ShowTitleCheckChange(checked) {
     console.log('ShowTitleCheckChange:', checked);
