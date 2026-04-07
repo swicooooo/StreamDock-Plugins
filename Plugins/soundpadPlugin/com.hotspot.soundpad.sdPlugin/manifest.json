@@ -110,7 +110,7 @@
   "Description": "Soundpad integration for your StreamDock. Play sounds directly from Soundpad, without needing to configure hotkeys",
   "Name": "Soundpad Integration",
   "Icon": "Images/pluginIcon",
-  "Version": "1.8",
+  "Version": "1.0.260407",
   "CodePath": "StreamDockQtPlugin.exe",
   "Category": "SoundPad",
   "CategoryIcon": "Images/categoryIcon",
