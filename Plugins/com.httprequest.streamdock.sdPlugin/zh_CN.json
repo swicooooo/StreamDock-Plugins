@@ -1,0 +1,21 @@
+{
+  "Name": "HTTP 请求",
+  "Description": "按键发送 HTTP 请求",
+  "Category": "HTTP 请求",
+  "com.httprequest.streamdock.action": {
+    "Name": "HTTP 请求",
+    "Tooltip": "按下时发送 HTTP GET/POST/PUT/DELETE/PATCH 请求"
+  },
+  "Localization": {
+    "HTTP Request": "HTTP 请求",
+    "URL": "地址",
+    "Method": "方法",
+    "Headers": "请求头",
+    "Body": "请求体",
+    "Timeout (ms)": "超时 (毫秒)",
+    "Show Status": "显示状态码",
+    "No URL": "未设置地址",
+    "Error": "错误",
+    "Timeout": "超时"
+  }
+}

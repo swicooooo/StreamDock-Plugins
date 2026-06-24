@@ -1,0 +1,21 @@
+{
+  "Name": "HTTP Request",
+  "Description": "Send HTTP requests from a button press",
+  "Category": "HTTP Request",
+  "com.httprequest.streamdock.action": {
+    "Name": "HTTP Request",
+    "Tooltip": "Send an HTTP GET/POST/PUT/DELETE/PATCH request when pressed"
+  },
+  "Localization": {
+    "HTTP Request": "HTTP Request",
+    "URL": "URL",
+    "Method": "Method",
+    "Headers": "Headers",
+    "Body": "Body",
+    "Timeout (ms)": "Timeout (ms)",
+    "Show Status": "Show Status",
+    "No URL": "No URL",
+    "Error": "Error",
+    "Timeout": "Timeout"
+  }
+}

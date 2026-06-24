@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="72" height="72">
+  <rect width="72" height="72" rx="12" fill="#1a1a2e"/>
+  <text x="36" y="28" font-family="monospace" font-size="14" fill="#00ccff" text-anchor="middle">HTTP</text>
+  <text x="36" y="48" font-family="monospace" font-size="12" fill="#0099ff" text-anchor="middle">GET</text>
+  <rect x="10" y="54" width="52" height="3" rx="1.5" fill="#0066aa"/>
+</svg>
