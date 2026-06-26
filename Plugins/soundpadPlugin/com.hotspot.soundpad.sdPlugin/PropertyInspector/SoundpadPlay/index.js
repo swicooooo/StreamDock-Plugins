@@ -162,12 +162,12 @@ function ShowTitleCheckChange(checked) {
     console.log('ShowTitleCheckChange:', checked);
     $settings.ShowTitleCheck = checked;
 
-    if (checked) {
-        const text = $dom.SoundSelectID.options[$dom.SoundSelectID.selectedIndex]?.textContent || $dom.SoundIndexInputID.value;
-        setButtonImageWithTitle(text);
-    } else {
-        setButtonImage();
-    }
+    // if (checked) {
+    //     const text = $dom.SoundSelectID.options[$dom.SoundSelectID.selectedIndex]?.textContent || $dom.SoundIndexInputID.value;
+    //     setButtonImageWithTitle(text);
+    // } else {
+    //     setButtonImage();
+    // }
 }
 function PTPModeCheckChange(checked) {
     console.log('PTPModeCheckChange:', checked);
