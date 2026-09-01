@@ -9,11 +9,6 @@
 #include <QJsonArray>
 #include <QFile>
 #include <QFileInfo>
-#include <QPainter>
-#include <QImage>
-#include <QFont>
-#include <QBuffer>
-#include <QApplication>
 
 SoundpadAction::SoundpadAction(ConnectionManager *connection, const QString &action, const QString &context)
     : Action{connection, action, context}
@@ -35,7 +30,7 @@ void SoundpadAction::DidReceiveSettings(const QJsonObject &payload)
 
     if (this->action == "com.hotspot.soundpadplay") {
         QJsonObject settings = payload["settings"].toObject();
-        UpdateButtonImage(settings);
+        UpdateButtonTitle(settings);
     }
 }
 
@@ -77,11 +72,13 @@ void SoundpadAction::KeyDown(const QJsonObject &payload)
                         LogManager::instance()->log(QString("===========thread com.hotspot.soundpadplay: %1").arg(index));
                     ExecuteCommand(hPipe, QString("DoPlaySound(%1)").arg(index).toStdString());
                 });
+                SetState(1);
             }else
             {
                 if (LogManager::instance())
                     LogManager::instance()->log(QString("===========sync com.hotspot.soundpadplay: %1").arg(index));
                 ExecuteCommand(hPipe, QString("DoPlaySound(%1)").arg(index).toStdString());
+                SetState(0);
             }
         }
     }else if(this->action == "com.hotspot.soundpadplayrand")
@@ -108,12 +105,13 @@ void SoundpadAction::KeyDown(const QJsonObject &payload)
         hPipe = FindAndConnectPipe();
         if(INVALID_HANDLE_VALUE != hPipe)
         {
-            QString Invalid = ExecuteCommand(hPipe, "GetPlayStatus()").value("Invalid").toString();
-            if(Invalid == "PAUSED" || Invalid == "PLAYING")
+            QString playStatus = ExecuteCommand(hPipe, "GetPlayStatus()").value("Invalid").toString();
+            if(playStatus == "PAUSED" || playStatus == "PLAYING")
             {
                 if (LogManager::instance())
                     LogManager::instance()->log(QString("===========com.hotspot.soundpadpause DoTogglePause"));
                 ExecuteCommand(hPipe, "DoTogglePause()");
+                SetState(playStatus == "PLAYING" ? 1 : 0);
             }
         }
     }else if(this->action == "com.hotspot.soundpadremove")
@@ -144,6 +142,7 @@ void SoundpadAction::KeyDown(const QJsonObject &payload)
             if (LogManager::instance())
                 LogManager::instance()->log(QString("===========com.hotspot.soundpadrecordptt"));
             ExecuteCommand(hPipe, "DoStartRecording()");
+            SetState(1);
         }
     }else if(this->action == "com.hotspot.soundpadloadsoundlist")
     {
@@ -195,12 +194,14 @@ void SoundpadAction::KeyUp(const QJsonObject &payload)
         if(PTPModeCheck)
         {
             ExecuteCommand(hPipe, "DoStopSound()");
+            SetState(0);
             if(workThread.joinable())
                 workThread.join();
         }
     }else if(this->action == "com.hotspot.soundpadrecordptt")
     {
         ExecuteCommand(hPipe, "DoStopRecording()");
+        SetState(0);
     }
 }
 
@@ -212,7 +213,10 @@ void SoundpadAction::WillAppear(const QJsonObject &payload)
 
         if (this->action == "com.hotspot.soundpadplay") {
             QJsonObject settings = payload["settings"].toObject();
-            UpdateButtonImage(settings);
+            UpdateButtonTitle(settings);
+            SetState(0);
+        } else if (this->action == "com.hotspot.soundpadrecordptt") {
+            SetState(0);
         }
     } catch (...) {
         if (LogManager::instance()) {
@@ -286,93 +290,16 @@ void SoundpadAction::PropertyInspectorDidAppear(const QJsonObject &payload)
             LogManager::instance()->log("PropertyInspectorDidAppear: ERROR - exception in handler");
     }
 }
-void SoundpadAction::UpdateButtonImage(const QJsonObject &settings)
+void SoundpadAction::UpdateButtonTitle(const QJsonObject &settings)
 {
-    try {
-        if (this->action != "com.hotspot.soundpadplay")
-            return;
-        if (settings.isEmpty()) {
-            LogManager::instance()->log("UpdateButtonImage: empty settings, skipping");
-            return;
-        }
-        LogManager::instance()->log("UpdateButtonImage start.......");
-        bool showTitleCheck = settings.contains("ShowTitleCheck")
-                                  ? settings["ShowTitleCheck"].toBool()
-                                  : false;
-
-        // Resolve image path
-        QString appDir = QApplication::applicationDirPath();
-        QString imagePath = appDir + "/Images/sound.png";
-
-        QImage baseImage(imagePath);
-        if (baseImage.isNull()) {
-            if (LogManager::instance())
-                LogManager::instance()->log(QString("UpdateButtonImage: Failed to load image from %1").arg(imagePath));
-            return;
-        }
-
-        // 转换为 ARGB32 确保 QPainter 兼容
-        baseImage = baseImage.convertToFormat(QImage::Format_ARGB32);
-
-        if (showTitleCheck) {
-            QString titleText = settings.contains("SoundSelect")
-            ? settings["SoundSelect"].toString()
-            : settings.contains("SoundIndexInput")
-                ? settings["SoundIndexInput"].toString()
-                : "";
-
-            if (!titleText.isEmpty()) {
-                try {
-                QPainter painter(&baseImage);
-                if (!painter.isActive()) {
-                    if (LogManager::instance())
-                        LogManager::instance()->log("UpdateButtonImage: painter failed to start");
-                    return;
-                }
-                // Dark semi-transparent bar at bottom (matching JS: rgba(0,0,0,0.55))
-                painter.fillRect(0, baseImage.height() - 18, baseImage.width(), 18, QColor(0, 0, 0, 140));
-                // White title text (matching JS: bold 11px Arial, center aligned)
-                QFont font("Arial", 11, QFont::Bold);
-                painter.setFont(font);
-                painter.setPen(Qt::white);
-                int padding = 4;
-                painter.drawText(QRect(padding, baseImage.height() - 18,
-                                       baseImage.width() - padding * 2, 18),
-                                 Qt::AlignCenter, titleText);
-                painter.end();
-                } catch (...) {
-                    if (LogManager::instance()) {
-                        LogManager::instance()->logAndFlush("UpdateButtonImage: ERROR - exception in QPainter");
-                    }
-                    return;
-                }
-            }
-        }
-
-        QByteArray byteArray;
-        QBuffer buffer(&byteArray);
-        buffer.open(QIODevice::WriteOnly);
-        baseImage.save(&buffer, "PNG", 90);
-        buffer.close();
-
-        if (byteArray.isEmpty()) {
-            if (LogManager::instance())
-                LogManager::instance()->log("UpdateButtonImage: Failed to encode image to PNG");
-            return;
-        }
-
-        QString base64 = QString::fromLatin1(byteArray.toBase64());
-        SetImage(base64);
-
-        if (LogManager::instance())
-            LogManager::instance()->log(QString("UpdateButtonImage: Set image showTitle=%1 title=%2")
-                                            .arg(showTitleCheck)
-                                            .arg(settings.contains("SoundSelect") ? settings["SoundSelect"].toString() : "none"));
-    } catch (...) {
-        if (LogManager::instance())
-            LogManager::instance()->logAndFlush("UpdateButtonImage: ERROR - exception caught");
+    bool showTitle = settings.value("ShowTitleCheck").toBool(false);
+    QString title;
+    if (showTitle) {
+        title = settings.value("SoundSelect").toString();
+        if (title.isEmpty())
+            title = settings.value("SoundIndexInput").toString();
     }
-
+    SetTitle(title);
 }
 
 void SoundpadAction::ClosePipeHandle()

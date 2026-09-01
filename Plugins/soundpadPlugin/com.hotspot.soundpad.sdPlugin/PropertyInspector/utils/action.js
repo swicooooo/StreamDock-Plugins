@@ -30,27 +30,6 @@ WebSocket.prototype.setState = function (state) {
     }));
 };
 
-// 设置背景
-WebSocket.prototype.setImage = function (url) {
-    let image = new Image();
-    image.src = url;
-    image.onload = () => {
-        let canvas = document.createElement("canvas");
-        canvas.width = image.naturalWidth;
-        canvas.height = image.naturalHeight;
-        let ctx = canvas.getContext("2d");
-        ctx.drawImage(image, 0, 0);
-        this.send(JSON.stringify({
-            event: "setImage",
-            context: $context,
-            payload: {
-                target: 0,
-                image: canvas.toDataURL("image/png")
-            }
-        }));
-    };
-};
-
 // 打开网页
 WebSocket.prototype.openUrl = function (url) {
     this.send(JSON.stringify({

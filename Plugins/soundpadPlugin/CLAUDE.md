@@ -116,7 +116,7 @@ The pipe connection loop in `FindAndConnectPipe()` retries on `ERROR_PIPE_BUSY` 
 
 Each action's `index.html` includes three scripts in order:
 1. `utils/common.js` — `EventPlus` class, `$()` DOM selector, `throttle`/`debounce`
-2. `utils/action.js` — `connectElgatoStreamDeckSocket()`, `$websocket`, `$settings` Proxy, `setImage`/`sendToPlugin` helpers
+2. `utils/action.js` — `connectElgatoStreamDeckSocket()`, `$websocket`, `$settings` Proxy, `setState`/`sendToPlugin` helpers
 3. `index.js` — action-specific logic
 
 Settings are persisted via a `$settings` Proxy that auto-saves on assignment. Incoming events are dispatched through a `$propEvent` object: `$propEvent.didReceiveSettings(data)`, `$propEvent.sendToPropertyInspector(data)`, etc.

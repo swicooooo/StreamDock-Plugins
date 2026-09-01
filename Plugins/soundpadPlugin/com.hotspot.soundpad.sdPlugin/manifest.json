@@ -8,6 +8,11 @@
           "Image": "Images/sound",
           "TitleAlignment": "bottom",
           "FontSize": "9"
+        },
+        {
+          "Image": "Images/stop",
+          "TitleAlignment": "bottom",
+          "FontSize": "9"
         }
       ],
       "SupportedInMultiActions": true,
@@ -36,6 +41,11 @@
       "States": [
         {
           "Image": "Images/playpauseAction",
+          "TitleAlignment": "bottom",
+          "FontSize": "9"
+        },
+        {
+          "Image": "Images/sound",
           "TitleAlignment": "bottom",
           "FontSize": "9"
         }
@@ -81,6 +91,11 @@
       "States": [
         {
           "Image": "Images/recordptt",
+          "TitleAlignment": "bottom",
+          "FontSize": "9"
+        },
+        {
+          "Image": "Images/stop",
           "TitleAlignment": "bottom",
           "FontSize": "9"
         }

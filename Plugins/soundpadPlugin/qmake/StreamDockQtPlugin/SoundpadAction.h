@@ -32,7 +32,7 @@ private:
     HANDLE FindAndConnectPipe();
     QJsonObject  ExecuteCommand(HANDLE hPipe, const std::string& cmd);
     bool ParseXMLFile(QString filepath, QList<SplStruct> &spls, QList<QString> &allSoundUrls, QString basePath);
-    void UpdateButtonImage(const QJsonObject &settings);
+    void UpdateButtonTitle(const QJsonObject &settings);
     void ClosePipeHandle();
 
     HANDLE hPipe = INVALID_HANDLE_VALUE;
