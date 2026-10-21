@@ -1,0 +1,6 @@
+{
+  "Name": "SimHub", "Description": "SimHub のコントロールマッパーロールと名前付き入力をトリガーします", "Category": "SimHub",
+  "com.streamdock.simhub.controlmapper": { "Name": "コントロールマッパーロール", "Tooltip": "SimHub のコントロールマッパーロールをトリガーします" },
+  "com.streamdock.simhub.inputtrigger": { "Name": "SimHub 入力トリガー", "Tooltip": "名前付き SimHub 入力をトリガーします" },
+  "Localization": { "Control Mapper role":"SimHub コントロールマッパーロール", "Connecting":"SimHub に接続中…", "Choose role":"ロールを選択", "Connection hint":"SimHub が起動し、Control Mapper が有効であることを確認してください。", "Connected":"SimHub に接続しました。{count} 個のロールがあります。", "Connection failed":"接続に失敗しました：{error}", "Input name":"SimHub 入力名", "Input placeholder":"例：MyButton", "Input hint":"キーを押すと Press、離すと Release を送信します。SimHub の Controls and events でこの名前を割り当ててください。" }
+}

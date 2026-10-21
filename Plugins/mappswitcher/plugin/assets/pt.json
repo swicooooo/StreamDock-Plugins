@@ -1,0 +1,12 @@
+{
+  "Name": "Alternador de aplicativos",
+  "Description": "Alterne rapidamente entre aplicativos do Windows com uma tecla ou botão giratório",
+  "Category": "Alternador de aplicativos",
+  "com.streamdock.appswitcher.switch": { "Name": "Alternar aplicativo", "Tooltip": "Alternar entre aplicativos do Windows" },
+  "Localization": {
+    "On key press": "Ao pressionar a tecla",
+    "Next application (Alt + Tab)": "Próximo aplicativo (Alt + Tab)",
+    "Previous application (Alt + Shift + Tab)": "Aplicativo anterior (Alt + Shift + Tab)",
+    "Knob direction hint": "Gire no sentido horário para o próximo aplicativo e no sentido anti-horário para o anterior."
+  }
+}

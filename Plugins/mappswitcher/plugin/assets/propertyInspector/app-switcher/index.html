@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>App Switcher</title>
+  <style>
+    body { background:#2d2d2d; color:#eee; font:14px sans-serif; padding:12px; }
+    label { display:block; margin-bottom:8px; color:#ccc; }
+    select { width:100%; padding:8px; color:#eee; background:#3d3d3d; border:1px solid #666; border-radius:4px; }
+    .hint { margin-top:14px; color:#aaa; line-height:1.6; }
+    .hidden { display:none; }
+  </style>
+</head>
+<body>
+  <div id="button-settings">
+    <label id="direction-label" for="direction">On key press</label>
+    <select id="direction">
+      <option id="next-option" value="next">Next application (Alt + Tab)</option>
+      <option id="previous-option" value="previous">Previous application (Alt + Shift + Tab)</option>
+    </select>
+  </div>
+  <div id="knob-help" class="hint hidden">Turn clockwise for the next application and counterclockwise for the previous application.</div>
+  <script>
+    let websocket;
+    let actionInfo;
+    let pluginUUID;
+
+    const languageFiles = {
+      en: 'en', zh_CN: 'zh_CN', ja: 'ja', ko: 'ko', fr: 'fr',
+      de: 'de', es: 'es', ru: 'ru', pt: 'pt', pt_BR: 'pt'
+    };
+
+    async function applyLocalization(infoJson) {
+      let language = 'en';
+      try {
+        const info = JSON.parse(infoJson);
+        language = info.application?.language || 'en';
+      } catch (_) {}
+      const normalized = language.replace('-', '_');
+      const file = languageFiles[normalized] || languageFiles[normalized.split('_')[0]] || 'en';
+      try {
+        const response = await fetch(`../../${file}.json`);
+        const strings = (await response.json()).Localization || {};
+        document.documentElement.lang = normalized;
+        document.querySelector('#direction-label').textContent = strings['On key press'] || 'On key press';
+        document.querySelector('#next-option').textContent = strings['Next application (Alt + Tab)'] || 'Next application (Alt + Tab)';
+        document.querySelector('#previous-option').textContent = strings['Previous application (Alt + Shift + Tab)'] || 'Previous application (Alt + Shift + Tab)';
+        document.querySelector('#knob-help').textContent = strings['Knob direction hint'] || 'Turn clockwise for the next application and counterclockwise for the previous application.';
+      } catch (_) {}
+    }
+
+    function connectElgatoStreamDeckSocket(port, uuid, registerEvent, info, actionInfoJson) {
+      pluginUUID = uuid;
+      actionInfo = JSON.parse(actionInfoJson);
+      const controller = String(actionInfo.payload?.controller || actionInfo.controller || '').toLowerCase();
+      const isKnob = controller === 'knob' || controller === 'encoder';
+      document.querySelector('#button-settings').classList.toggle('hidden', isKnob);
+      document.querySelector('#knob-help').classList.toggle('hidden', !isKnob);
+      applyLocalization(info);
+      websocket = new WebSocket(`ws://127.0.0.1:${port}`);
+      websocket.onopen = () => {
+        websocket.send(JSON.stringify({ event: registerEvent, uuid }));
+        const settings = actionInfo.payload.settings || {};
+        document.querySelector('#direction').value = settings.buttonDirection || 'next';
+      };
+    }
+
+    document.querySelector('#direction').addEventListener('change', event => {
+      if (!websocket || websocket.readyState !== WebSocket.OPEN) return;
+      websocket.send(JSON.stringify({
+        event: 'setSettings',
+        context: pluginUUID,
+        payload: { buttonDirection: event.target.value }
+      }));
+    });
+  </script>
+</body>
+</html>

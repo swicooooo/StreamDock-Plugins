@@ -1,0 +1,49 @@
+{
+  "Actions": [
+    {
+      "Icon": "static/icon",
+      "Name": "@ACTION_NAME@",
+      "Controllers": ["Keypad", "Knob"],
+      "States": [
+        {
+          "Image": "static/defaultImage",
+          "TitleAlignment": "middle"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "@ACTION_NAME@",
+      "UUID": "@ACTION_ID@",
+      "PropertyInspectorPath": "propertyInspector/app-switcher/index.html"
+    }
+  ],
+  "SDKVersion": 2,
+  "Author": "@PLUGIN_AUTHOR@",
+  "Localization": {
+    "en": "en.json",
+    "zh_CN": "zh_CN.json",
+    "ja": "ja.json",
+    "ko": "ko.json",
+    "fr": "fr.json",
+    "de": "de.json",
+    "es": "es.json",
+    "ru": "ru.json",
+    "pt": "pt.json",
+    "pt_BR": "pt.json"
+  },
+  "Description": "@PLUGIN_DESCRIPTION@",
+  "Name": "@PLUGIN_NAME@",
+  "Icon": "static/pluginIcon",
+  "Version": "@PLUGIN_VERSION@",
+  "CodePathWin": "@EXECUTABLE_NAME@.exe",
+  "Category": "@PLUGIN_NAME@",
+  "CategoryIcon": "static/category",
+  "OS": [
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
+  ],
+  "Software": {
+    "MinimumVersion": "5.0"
+  }
+}

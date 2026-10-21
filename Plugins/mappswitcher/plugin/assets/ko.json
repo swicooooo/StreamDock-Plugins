@@ -1,0 +1,12 @@
+{
+  "Name": "앱 전환기",
+  "Description": "키 또는 노브로 Windows 앱을 빠르게 전환합니다",
+  "Category": "앱 전환기",
+  "com.streamdock.appswitcher.switch": { "Name": "앱 전환", "Tooltip": "Windows 앱 사이를 전환합니다" },
+  "Localization": {
+    "On key press": "키를 누를 때",
+    "Next application (Alt + Tab)": "다음 앱 (Alt + Tab)",
+    "Previous application (Alt + Shift + Tab)": "이전 앱 (Alt + Shift + Tab)",
+    "Knob direction hint": "시계 방향은 다음 앱, 반시계 방향은 이전 앱으로 전환합니다."
+  }
+}

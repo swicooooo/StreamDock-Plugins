@@ -1,0 +1,48 @@
+{
+  "Actions": [
+    {
+      "Icon": "static/icon",
+      "Name": "Control Mapper Role",
+      "Controllers": ["Keypad"],
+      "States": [{ "Image": "static/defaultImage", "TitleAlignment": "bottom", "FontSize": "10" }],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Trigger a SimHub Control Mapper role",
+      "UUID": "@CONTROL_MAPPER_ACTION_ID@",
+      "PropertyInspectorPath": "propertyInspector/control-mapper/index.html"
+    },
+    {
+      "Icon": "static/icon",
+      "Name": "SimHub Input Trigger",
+      "Controllers": ["Keypad"],
+      "States": [{ "Image": "static/defaultImage", "TitleAlignment": "bottom", "FontSize": "10" }],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Trigger a named SimHub input",
+      "UUID": "@INPUT_TRIGGER_ACTION_ID@",
+      "PropertyInspectorPath": "propertyInspector/input-trigger/index.html"
+    }
+  ],
+  "SDKVersion": 2,
+  "Author": "@PLUGIN_AUTHOR@",
+  "Localization": {
+    "en": "en.json",
+    "zh_CN": "zh_CN.json",
+    "ja": "ja.json",
+    "ko": "ko.json",
+    "fr": "fr.json",
+    "de": "de.json",
+    "es": "es.json",
+    "ru": "ru.json",
+    "pt": "pt.json",
+    "pt_BR": "pt.json"
+  },
+  "Description": "@PLUGIN_DESCRIPTION@",
+  "Name": "@PLUGIN_NAME@",
+  "Icon": "static/pluginIcon",
+  "Version": "@PLUGIN_VERSION@",
+  "CodePathWin": "@EXECUTABLE_NAME@.exe",
+  "Category": "SimHub",
+  "CategoryIcon": "static/category",
+  "URL": "https://www.simhubdash.com/",
+  "OS": [{ "Platform": "windows", "MinimumVersion": "10" }],
+  "Software": { "MinimumVersion": "5.0" }
+}

@@ -1,0 +1,6 @@
+{
+  "Name":"SimHub", "Description":"SimHub-Control-Mapper-Rollen und benannte Eingaben auslösen", "Category":"SimHub",
+  "com.streamdock.simhub.controlmapper":{"Name":"Control-Mapper-Rolle","Tooltip":"Eine SimHub-Control-Mapper-Rolle auslösen"},
+  "com.streamdock.simhub.inputtrigger":{"Name":"SimHub-Eingabeauslöser","Tooltip":"Eine benannte SimHub-Eingabe auslösen"},
+  "Localization":{"Control Mapper role":"SimHub-Control-Mapper-Rolle","Connecting":"Verbindung mit SimHub wird hergestellt…","Choose role":"Rolle auswählen","Connection hint":"Stellen Sie sicher, dass SimHub läuft und Control Mapper aktiviert ist.","Connected":"Mit SimHub verbunden. {count} Rollen verfügbar.","Connection failed":"Verbindung fehlgeschlagen: {error}","Input name":"SimHub-Eingabename","Input placeholder":"Zum Beispiel: MyButton","Input hint":"Sendet beim Drücken Press und beim Loslassen Release. Binden Sie diesen Namen in SimHub Controls and events."}
+}

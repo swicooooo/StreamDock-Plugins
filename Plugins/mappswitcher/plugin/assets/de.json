@@ -1,0 +1,12 @@
+{
+  "Name": "App-Umschalter",
+  "Description": "Windows-Apps schnell per Taste oder Drehregler wechseln",
+  "Category": "App-Umschalter",
+  "com.streamdock.appswitcher.switch": { "Name": "App wechseln", "Tooltip": "Zwischen Windows-Apps wechseln" },
+  "Localization": {
+    "On key press": "Beim Tastendruck",
+    "Next application (Alt + Tab)": "Nächste App (Alt + Tab)",
+    "Previous application (Alt + Shift + Tab)": "Vorherige App (Alt + Umschalt + Tab)",
+    "Knob direction hint": "Im Uhrzeigersinn zur nächsten App, gegen den Uhrzeigersinn zur vorherigen App wechseln."
+  }
+}

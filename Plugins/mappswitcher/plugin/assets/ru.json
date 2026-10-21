@@ -1,0 +1,12 @@
+{
+  "Name": "Переключатель приложений",
+  "Description": "Быстро переключайте приложения Windows клавишей или регулятором",
+  "Category": "Переключатель приложений",
+  "com.streamdock.appswitcher.switch": { "Name": "Сменить приложение", "Tooltip": "Переключение между приложениями Windows" },
+  "Localization": {
+    "On key press": "При нажатии клавиши",
+    "Next application (Alt + Tab)": "Следующее приложение (Alt + Tab)",
+    "Previous application (Alt + Shift + Tab)": "Предыдущее приложение (Alt + Shift + Tab)",
+    "Knob direction hint": "Поверните по часовой стрелке для следующего приложения, против часовой — для предыдущего."
+  }
+}

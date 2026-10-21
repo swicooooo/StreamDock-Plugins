@@ -1,0 +1,6 @@
+{
+  "Name":"SimHub", "Description":"SimHub Control Mapper 역할과 이름 지정 입력을 실행합니다", "Category":"SimHub",
+  "com.streamdock.simhub.controlmapper":{"Name":"Control Mapper 역할","Tooltip":"SimHub Control Mapper 역할 실행"},
+  "com.streamdock.simhub.inputtrigger":{"Name":"SimHub 입력 트리거","Tooltip":"이름 지정 SimHub 입력 실행"},
+  "Localization":{"Control Mapper role":"SimHub Control Mapper 역할","Connecting":"SimHub에 연결 중…","Choose role":"역할 선택","Connection hint":"SimHub가 실행 중이고 Control Mapper가 활성화되어 있는지 확인하세요.","Connected":"SimHub에 연결되었습니다. {count}개 역할을 사용할 수 있습니다.","Connection failed":"연결 실패: {error}","Input name":"SimHub 입력 이름","Input placeholder":"예: MyButton","Input hint":"키를 누르면 Press, 놓으면 Release를 전송합니다. SimHub Controls and events에서 이 이름을 바인딩하세요."}
+}

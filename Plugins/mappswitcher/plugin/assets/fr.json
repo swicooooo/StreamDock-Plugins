@@ -1,0 +1,12 @@
+{
+  "Name": "Sélecteur d’applications",
+  "Description": "Changez rapidement d’application Windows avec une touche ou un bouton rotatif",
+  "Category": "Sélecteur d’applications",
+  "com.streamdock.appswitcher.switch": { "Name": "Changer d’application", "Tooltip": "Basculer entre les applications Windows" },
+  "Localization": {
+    "On key press": "À l’appui de la touche",
+    "Next application (Alt + Tab)": "Application suivante (Alt + Tab)",
+    "Previous application (Alt + Shift + Tab)": "Application précédente (Alt + Maj + Tab)",
+    "Knob direction hint": "Tournez dans le sens horaire pour l’application suivante et dans le sens antihoraire pour la précédente."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "Name": "SimHub",
+  "Description": "触发 SimHub 控制映射角色和命名输入",
+  "Category": "SimHub",
+  "com.streamdock.simhub.controlmapper": { "Name": "控制映射角色", "Tooltip": "触发 SimHub 控制映射角色" },
+  "com.streamdock.simhub.inputtrigger": { "Name": "SimHub 输入触发器", "Tooltip": "触发一个命名的 SimHub 输入" },
+  "Localization": {
+    "Control Mapper role": "SimHub 控制映射角色",
+    "Connecting": "正在连接 SimHub…",
+    "Choose role": "请选择角色",
+    "Connection hint": "请确保 SimHub 正在运行并已启用控制映射。",
+    "Connected": "已连接 SimHub，共有 {count} 个角色。",
+    "Connection failed": "连接失败：{error}",
+    "Input name": "SimHub 输入名称",
+    "Input placeholder": "例如：MyButton",
+    "Input hint": "按下时发送 Press，松开时发送 Release。可在 SimHub 的“控制与事件”中绑定此名称。"
+  }
+}

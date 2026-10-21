@@ -2,7 +2,8 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++17
+CONFIG -= debug debug_and_release
+CONFIG += c++17 release
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -19,23 +20,12 @@ DEFINES += SD_VERSION_MINOR=0
 # Static/compile-time patch version of the Stream Dock.
 DEFINES += SD_VERSION_PATCH=0
 # 目标文件名
-TARGET = "StreamDockQtPlugin"
-# 根据CONFIG选择DESTDIR的路径
-CONFIG(debug, debug|release) {
-    # DESTDIR（可执行文件存放的文件路径）
-    DESTDIR = $$shell_path(./debug)
-} else {
-    # 以管理员身份运行
-    #    QMAKE_LFLAGS += /MANIFESTUAC:\"level=\'requireAdministrator\' uiAccess=\'false\'\"
-    # 屏蔽 QDebug
-    # qDebug() QT_NO_DEBUG_OUTPUT
-    # qWarning() QT_NO_WARNING_OUTPUT
-    DEFINES += QT_NO_DEBUG_OUTPUT
-    # 在Release模式下，也能输出文件信息，行数
-    DEFINES += QT_MESSAGELOGCONTEXT
-    # DESTDIR（可执行文件存放的文件路径）
-    DESTDIR = $$shell_path(./release)
-}
+TARGET = "WebCam"
+
+# 仅生成 Release，并将可执行文件直接输出到插件目录。
+DEFINES += QT_NO_DEBUG_OUTPUT
+DEFINES += QT_MESSAGELOGCONTEXT
+DESTDIR = $$clean_path($$PWD/../../com.hotspot.webcam.sdPlugin)
 # MOC命令将含Q_OBJECT的头文件转换为标准的头文件寄存的目录
 MOC_DIR = ./temp/moc
 # RCC将qrc文件转化为头文件所寄存的目录

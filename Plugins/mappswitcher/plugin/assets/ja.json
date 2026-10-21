@@ -1,0 +1,12 @@
+{
+  "Name": "アプリ切り替え",
+  "Description": "キーまたはノブで Windows アプリを素早く切り替えます",
+  "Category": "アプリ切り替え",
+  "com.streamdock.appswitcher.switch": { "Name": "アプリを切り替え", "Tooltip": "Windows アプリを切り替えます" },
+  "Localization": {
+    "On key press": "キーを押したとき",
+    "Next application (Alt + Tab)": "次のアプリ（Alt + Tab）",
+    "Previous application (Alt + Shift + Tab)": "前のアプリ（Alt + Shift + Tab）",
+    "Knob direction hint": "時計回りで次のアプリ、反時計回りで前のアプリに切り替えます。"
+  }
+}

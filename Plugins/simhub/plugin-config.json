@@ -1,0 +1,10 @@
+{
+  "pluginId": "com.streamdock.simhub",
+  "controlMapperActionId": "com.streamdock.simhub.controlmapper",
+  "inputTriggerActionId": "com.streamdock.simhub.inputtrigger",
+  "pluginName": "SimHub",
+  "executableName": "simhub",
+  "version": "1.0.1",
+  "author": "Stream Dock",
+  "description": "Trigger SimHub Control Mapper roles and named inputs"
+}

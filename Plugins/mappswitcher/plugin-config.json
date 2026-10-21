@@ -1,0 +1,10 @@
+{
+  "pluginId": "com.streamdock.appswitcher",
+  "actionId": "com.streamdock.appswitcher.switch",
+  "pluginName": "App Switcher",
+  "actionName": "Switch Application",
+  "executableName": "appswitcher",
+  "version": "1.0.260910",
+  "author": "Stream Dock",
+  "description": "Quickly switch Windows applications with a key or knob"
+}

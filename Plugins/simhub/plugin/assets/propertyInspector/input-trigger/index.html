@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SimHub Input Trigger</title>
+  <style>
+    body { background:#2d2d2d; color:#eee; font:14px sans-serif; padding:12px; }
+    label { display:block; margin-bottom:8px; color:#ccc; }
+    input { box-sizing:border-box; width:100%; padding:8px; color:#eee; background:#3d3d3d; border:1px solid #666; border-radius:4px; }
+    .hint { margin-top:12px; color:#aaa; line-height:1.5; }
+  </style>
+</head>
+<body>
+  <label id="input-label" for="input-name">SimHub input name</label>
+  <input id="input-name" type="text" placeholder="For example: MyButton">
+  <div id="input-hint" class="hint">Sends Press on key down and Release on key up. Bind this name in SimHub Controls and events.</div>
+  <script>
+    let websocket;
+    let context;
+    const languageFiles = { en:'en', zh_CN:'zh_CN', ja:'ja', ko:'ko', fr:'fr', de:'de', es:'es', ru:'ru', pt:'pt', pt_BR:'pt' };
+
+    async function localize(infoJson) {
+      let language = 'en';
+      try { language = JSON.parse(infoJson).application?.language || 'en'; } catch (_) {}
+      const normalized = language.replace('-', '_');
+      const file = languageFiles[normalized] || languageFiles[normalized.split('_')[0]] || 'en';
+      let strings = {};
+      try { strings = (await (await fetch(`../../${file}.json`)).json()).Localization || {}; } catch (_) {}
+      document.documentElement.lang = normalized;
+      document.querySelector('#input-label').textContent = strings['Input name'] || 'SimHub input name';
+      document.querySelector('#input-name').placeholder = strings['Input placeholder'] || 'For example: MyButton';
+      document.querySelector('#input-hint').textContent = strings['Input hint'] || 'Sends Press on key down and Release on key up. Bind this name in SimHub Controls and events.';
+    }
+
+    function save() {
+      if (!websocket || websocket.readyState !== WebSocket.OPEN) return;
+      websocket.send(JSON.stringify({
+        event: 'setSettings', context,
+        payload: { input_name: document.querySelector('#input-name').value.trim() }
+      }));
+    }
+
+    function connectElgatoStreamDeckSocket(port, uuid, registerEvent, info, actionInfoJson) {
+      context = uuid;
+      const actionInfo = JSON.parse(actionInfoJson);
+      document.querySelector('#input-name').value = actionInfo.payload?.settings?.input_name || '';
+      websocket = new WebSocket(`ws://127.0.0.1:${port}`);
+      websocket.onopen = async () => {
+        websocket.send(JSON.stringify({ event: registerEvent, uuid }));
+        await localize(info);
+      };
+      websocket.onmessage = event => {
+        const message = JSON.parse(event.data);
+        if (message.event === 'didReceiveSettings') {
+          document.querySelector('#input-name').value = message.payload?.settings?.input_name || '';
+        }
+      };
+    }
+    document.querySelector('#input-name').addEventListener('change', save);
+    document.querySelector('#input-name').addEventListener('blur', save);
+  </script>
+</body>
+</html>

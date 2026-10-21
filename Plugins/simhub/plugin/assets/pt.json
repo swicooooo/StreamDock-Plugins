@@ -1,0 +1,6 @@
+{
+  "Name":"SimHub", "Description":"Acione funções do Control Mapper e entradas nomeadas do SimHub", "Category":"SimHub",
+  "com.streamdock.simhub.controlmapper":{"Name":"Função do Control Mapper","Tooltip":"Acionar uma função do Control Mapper do SimHub"},
+  "com.streamdock.simhub.inputtrigger":{"Name":"Acionador de entrada SimHub","Tooltip":"Acionar uma entrada nomeada do SimHub"},
+  "Localization":{"Control Mapper role":"Função do Control Mapper do SimHub","Connecting":"Conectando ao SimHub…","Choose role":"Escolha uma função","Connection hint":"Verifique se o SimHub está em execução e o Control Mapper está ativado.","Connected":"Conectado ao SimHub. {count} funções disponíveis.","Connection failed":"Falha na conexão: {error}","Input name":"Nome da entrada SimHub","Input placeholder":"Por exemplo: MyButton","Input hint":"Envia Press ao pressionar e Release ao soltar. Vincule este nome em Controls and events do SimHub."}
+}

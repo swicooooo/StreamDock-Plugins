@@ -1,0 +1,15 @@
+{
+  "Name": "应用切换器",
+  "Description": "通过按键或旋钮快速切换 Windows 应用",
+  "Category": "应用切换器",
+  "com.streamdock.appswitcher.switch": {
+    "Name": "切换应用",
+    "Tooltip": "在 Windows 应用之间切换"
+  },
+  "Localization": {
+    "On key press": "按键时",
+    "Next application (Alt + Tab)": "下一个应用（Alt + Tab）",
+    "Previous application (Alt + Shift + Tab)": "上一个应用（Alt + Shift + Tab）",
+    "Knob direction hint": "顺时针切换到下一个应用，逆时针切换到上一个应用。"
+  }
+}

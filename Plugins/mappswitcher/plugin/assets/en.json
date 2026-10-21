@@ -1,0 +1,15 @@
+{
+  "Name": "App Switcher",
+  "Description": "Quickly switch Windows applications with a key or knob",
+  "Category": "App Switcher",
+  "com.streamdock.appswitcher.switch": {
+    "Name": "Switch Application",
+    "Tooltip": "Switch between Windows applications"
+  },
+  "Localization": {
+    "On key press": "On key press",
+    "Next application (Alt + Tab)": "Next application (Alt + Tab)",
+    "Previous application (Alt + Shift + Tab)": "Previous application (Alt + Shift + Tab)",
+    "Knob direction hint": "Turn clockwise for the next application and counterclockwise for the previous application."
+  }
+}

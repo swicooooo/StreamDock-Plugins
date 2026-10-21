@@ -1,0 +1,12 @@
+{
+  "Name": "Selector de aplicaciones",
+  "Description": "Cambia rápidamente entre aplicaciones de Windows con una tecla o perilla",
+  "Category": "Selector de aplicaciones",
+  "com.streamdock.appswitcher.switch": { "Name": "Cambiar aplicación", "Tooltip": "Cambiar entre aplicaciones de Windows" },
+  "Localization": {
+    "On key press": "Al pulsar la tecla",
+    "Next application (Alt + Tab)": "Aplicación siguiente (Alt + Tab)",
+    "Previous application (Alt + Shift + Tab)": "Aplicación anterior (Alt + Mayús + Tab)",
+    "Knob direction hint": "Gira a la derecha para la aplicación siguiente y a la izquierda para la anterior."
+  }
+}

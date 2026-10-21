@@ -1,0 +1,18 @@
+{
+  "Name": "SimHub",
+  "Description": "Trigger SimHub Control Mapper roles and named inputs",
+  "Category": "SimHub",
+  "com.streamdock.simhub.controlmapper": { "Name": "Control Mapper Role", "Tooltip": "Trigger a SimHub Control Mapper role" },
+  "com.streamdock.simhub.inputtrigger": { "Name": "SimHub Input Trigger", "Tooltip": "Trigger a named SimHub input" },
+  "Localization": {
+    "Control Mapper role": "SimHub Control Mapper Role",
+    "Connecting": "Connecting to SimHub…",
+    "Choose role": "Choose a role",
+    "Connection hint": "Make sure SimHub is running and Control Mapper is enabled.",
+    "Connected": "Connected to SimHub. {count} roles available.",
+    "Connection failed": "Connection failed: {error}",
+    "Input name": "SimHub input name",
+    "Input placeholder": "For example: MyButton",
+    "Input hint": "Sends Press on key down and Release on key up. Bind this name in SimHub Controls and events."
+  }
+}
